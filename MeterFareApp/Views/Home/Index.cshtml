@@ -12,27 +12,15 @@
             </div>
 
             <!-- Form -->
-            <form name="meterFareForm" ng-submit="vm.submitForm(meterFareForm.$valid)" novalidate>
+            <form name="meterFareForm" novalidate ng-submit="vm.submitForm(meterFareForm.$valid)">
                 <!-- Date of the ride-->
                 <div class="row">
                     <div class="col-xs-7 col-sm-6 col-md-6 col-lg-6">
                         <label class="control-label">Time of departure</label>
                         <p class="input-group">
-                            @*<input type="text" name="meterDate" class="form-control"
-                                   ng-model="vm.meterDate"
-                                   uib-datepicker-popup="{{vm.meterDateFormat}}"
-                                   is-open="vm.popup1.opened"
-                                   datepicker-options="vm.dateOptions"
-                                   ng-required="true"
-                                   close-text="Close"
-                                   alt-input-formats="vm.altInputFormats" />
-                            <span class="input-group-btn">
-                                <button type="button" class="btn btn-default" ng-click="vm.open1()">
-                                    <i class="glyphicon glyphicon-calendar"></i>
-                                </button>
-                            </span>*@
-
-                            <input type="text" name="meterDate" class="form-control"
+                            <input type="text" 
+                                   name="meterDate" 
+                                   class="form-control"
                                    ng-model="vm.meterDateControl.data"
                                    uib-datepicker-popup="{{vm.meterDateControl.defaultDateFormat}}"
                                    is-open="vm.meterDateControl.isOpened"
@@ -46,24 +34,21 @@
                                 </button>
                             </span>
                         </p>
-                        <p ng-show="meterFareForm.meterDate.$invalid && !meterFareForm.meterDate.$pristine" class="help-block">
-                            A date is required.
+                        <p ng-show="meterFareForm.meterDate.$invalid && (!meterFareForm.meterDate.$pristine || meterFareForm.$submitted)" class="help-block">
+                            A valid date is required.
                         </p>
                     </div>
                     <div class="col-xs-5 col-sm-6 col-md-6 col-lg-6">
-                        @*<div uib-timepicker 
-                             ng-model="vm.meterTime"
-                             hour-step="vm.hstep"
-                             minute-step="vm.mstep" 
-                             show-meridian="vm.ismeridian"></div>*@
-
                         <div uib-timepicker
+                             name="meterTime"
                              ng-model="vm.meterTimeControl.data"
+                             ng-required="true"
                              hour-step="vm.meterTimeControl.hstep"
                              minute-step="vm.meterTimeControl.mstep"
                              show-meridian="vm.meterTimeControl.ismeridian"></div>
-
-                        <p ng-show="meterFareForm.meterTime.$invalid && !meterFareForm.meterTime.$pristine" class="help-block">
+                        <p ng-show="meterFareForm.meterTime.$invalid 
+                           && (!meterFareForm.meterTime.$pristine 
+                           || meterFareForm.$submitted)" class="help-block">
                             A time is required.
                         </p>
                     </div>
@@ -74,10 +59,14 @@
          
                     <label class="col-xs-12 col-sm-6 col-md-6 col-lg-6 control-label">Miles traveled under 6 miles per hour<small>&nbsp;(.2, .4, .6 ... 1)</small></label>
                     <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
-                        <input type="text" name="milesTraveled" class="form-control" ng-model="vm.milesTraveled" required />
-                        <p ng-show="meterFareForm.milesTraveled.$invalid && !meterFareForm.milesTraveled.$pristine" class="help-block">
-                            Please enter the amount of miles traveled under 6 miles per hour. 1/5 of a mile increments only.
-                        </p>
+                        <input type="text" 
+                               name="milesTraveled" 
+                               class="form-control" 
+                               ng-model="vm.milesTraveled" 
+                               ng-required="true" />
+                        <p ng-show="meterFareForm.milesTraveled.$invalid  && (!meterFareForm.milesTraveled.$pristine || meterFareForm.$submitted)" class="help-block">
+                            Please enter the amount in multiples of 1/5 miles.
+                        </p>                        
                     </div>
                 </div>
 
@@ -85,17 +74,23 @@
                 <div class="row">
                     <label class="col-xs-12 col-sm-6 col-md-6 col-lg-6 control-label">Minutes traveled over 6 miles per hour<small>&nbsp;(1, 2, 3 ... 60)</small></label>
                     <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
-                        <input type="text" name="minutesTraveled" class="form-control" ng-model="vm.minutesTraveled" numbers-only />
-                        <p ng-show="meterFareForm.minutesTraveled.$invalid && !meterFareForm.minutesTraveled.$pristine" class="help-block">
-                            Please enter the amount of minutes traveled over 6 miles per hour. 60 seconds increments only.
+                        <input type="number" name="minutesTraveled" class="form-control" ng-model="vm.minutesTraveled" overwrite-integer />
+                        <p ng-show="meterFareForm.minutesTraveled.$invalid && (!meterFareForm.minutesTraveled.$pristine || meterFareForm.$submitted)" class="help-block">
+                            Please enter the amount in multiple of 1 minutes.
                         </p>
                     </div>
                 </div>
 
                 <!-- Submit button -->
                 <div class="row">
-                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                    <div class="col-xs-6 col-sm-3 col-md-3 col-lg-3">
                         <button type="submit" class="btn btn-default btn-primary">Calculate</button>
+                    </div>
+                    <div class="col-xs-6 col-sm-3 col-md-3 col-lg-3">
+                        <button type="reset" class="btn btn-default btn-danger">Reset</button>
+                    </div>
+                    <div class="col-xs-6 col-sm-3 col-md-3 col-lg-3">
+                        <button type="button" class="btn btn-default btn-info" ng-click="vm.prefill()">Random</button>
                     </div>
                 </div>
             </form>

@@ -11,13 +11,15 @@
         var vm = this;
         
         vm.title = 'Calculate your expensive taxi cab fare!';
-        vm.submitForm = submitForm;
-        
         vm.meterDateControl = datepickerService.initNewDatePicker(null);
         vm.meterTimeControl = timepickerService.initNewDatePicker(null);
-        vm.milesTraveled = 1;
-        vm.minutesTraveled = 1;
+        vm.milesTraveled = null;
+        vm.minutesTraveled = null;
 
+        vm.submitForm = submitForm;
+        vm.prefill = prefill;
+        vm.resetForm = resetForm;
+        
         // auto exec
         activate();
 
@@ -76,6 +78,9 @@
 
         // function to submit the form after all validation has occurred
         function submitForm(isValid) {
+
+            vm.submitted = true;
+
             if (isValid) {
                 // get meter date
                 var meterDate = vm.meterDateControl.getData();
@@ -85,6 +90,18 @@
             } else {
                 // somethin something
             }
+        }
+
+        function resetForm() {
+            vm.meterFareForm.$submitted = false;
+        }
+
+        function prefill() {
+            var d = new Date();
+            vm.meterDateControl.setData(d);
+            vm.meterTimeControl.setData(d);
+            vm.minutesTraveled = Math.floor(Math.random() * 100);
+            vm.milesTraveled = Math.floor(Math.random() * 100);
         }
     }
 })();

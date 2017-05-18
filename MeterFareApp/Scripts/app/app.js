@@ -3,6 +3,7 @@
     // create angular app
     var app = angular.module('app', [
         // angular modules
+        'ngMessages',
 
         // custom modules
         'common',   // common functions, logger, spinner
