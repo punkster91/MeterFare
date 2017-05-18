@@ -1,0 +1,34 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2013
+VisualStudioVersion = 12.0.40629.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MeterFare.UI", "MeterFareApp\MeterFare.UI.csproj", "{0FCCFB89-0C21-4B0D-BB77-104E0EF4F5BC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MeterFare.Tests", "MeterFareApp.Tests\MeterFare.Tests.csproj", "{A4DEBEE3-A4F6-42B4-910C-E1E8D8DBD59E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MeterFare.Data", "MeterFare.Data\MeterFare.Data.csproj", "{FBFEA3AD-810A-44F6-9AD5-C3AAB95E2DBE}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{0FCCFB89-0C21-4B0D-BB77-104E0EF4F5BC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0FCCFB89-0C21-4B0D-BB77-104E0EF4F5BC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0FCCFB89-0C21-4B0D-BB77-104E0EF4F5BC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0FCCFB89-0C21-4B0D-BB77-104E0EF4F5BC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A4DEBEE3-A4F6-42B4-910C-E1E8D8DBD59E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A4DEBEE3-A4F6-42B4-910C-E1E8D8DBD59E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A4DEBEE3-A4F6-42B4-910C-E1E8D8DBD59E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A4DEBEE3-A4F6-42B4-910C-E1E8D8DBD59E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FBFEA3AD-810A-44F6-9AD5-C3AAB95E2DBE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FBFEA3AD-810A-44F6-9AD5-C3AAB95E2DBE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FBFEA3AD-810A-44F6-9AD5-C3AAB95E2DBE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FBFEA3AD-810A-44F6-9AD5-C3AAB95E2DBE}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
