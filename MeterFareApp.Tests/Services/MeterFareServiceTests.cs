@@ -195,7 +195,7 @@ namespace MeterFare.Tests.Services
         [TestMethod]
         public void CalculateTotalFare_ExpectAmount()
         {
-            MeterFareService meterFareService = new MeterFareService();
+            MeterFareService meterFareService = new MeterFareService(new SurchargesProvider());
             // Friday 2010-10-08 at 5:30pm
             DateTime meterTime = new DateTime(2010, 10, 8, 17, 30, 0);
             float milesTraveled = 2f;
@@ -214,7 +214,7 @@ namespace MeterFare.Tests.Services
         [TestMethod]
         public void CalculateTotalFare_OnlyEntry_ExpectAmount()
         {
-            MeterFareService meterFareService = new MeterFareService();
+            MeterFareService meterFareService = new MeterFareService(new SurchargesProvider());
             // Friday 2010-10-08 at 5:30pm
             DateTime meterTime = new DateTime(2010, 10, 8, 17, 30, 0);
             float milesTraveled = 0f;

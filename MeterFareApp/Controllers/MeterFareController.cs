@@ -1,28 +1,16 @@
 ﻿using MeterFare.Data.Services;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.Mvc;
+using System.Web.Http;
 
 namespace MeterFare.UI.Controllers
 {
     /// <summary>
     /// Meter Fare controller
     /// </summary>
-    public class MeterFareController : Controller
+    public class MeterFareController : ApiController
     {
-        
-        // GET: MeterFare
-        /// <summary>
-        /// Returns the main view
-        /// </summary>
-        /// <returns></returns>
-        public ActionResult Index()
-        {
-            return View();
-        }
-
+      
+        [HttpPost]
         // POST: MeterFare/CalculateFare
         /// <summary>
         /// Calculates the meter fare based on the meter time and distance traveled
@@ -31,23 +19,30 @@ namespace MeterFare.UI.Controllers
         /// <param name="milesTraveled"></param>
         /// <param name="minutesTraveled"></param>
         /// <returns></returns>
-        [HttpPost]
-        public ActionResult CalculateFare(DateTime meterTime, float milesTraveled, uint minutesTraveled)
+        public IHttpActionResult CalculateFare(string meterTime, float milesTraveled, uint minutesTraveled)
         {
-            MeterFareService meterFareService = new MeterFareService();
+            MeterFareService meterFareService = new MeterFareService(new SurchargesProvider());
 
-            decimal totalFare = meterFareService.CalculateTotalFare(meterTime,
+            DateTime meterDate;
+            if(!DateTime.TryParse(meterTime, out meterDate))
+            {
+                throw new Exception(string.Format("Unable to format meter time: {0}", meterTime));
+            }
+
+            decimal totalFare = meterFareService.CalculateTotalFare(meterDate,
                 MeterFareService.BASEFARE,
                 MeterFareService.UNITFARE,
                 milesTraveled,
                 minutesTraveled);
 
-            return Json(
-                new
-                {
-                    TotalFare = totalFare
-                }
-            );
+            return Ok(totalFare);
+        }
+
+        [HttpGet]
+        [Route("api/meterfare/helloworld")]
+        public IHttpActionResult HelloWorld()
+        {
+            return Ok("HELLO WORLD");
         }
     }
 }

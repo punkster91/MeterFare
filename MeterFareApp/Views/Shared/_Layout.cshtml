@@ -1,12 +1,27 @@
 ﻿<!DOCTYPE html>
-<html lang="en" ng-app>
+<html lang="en">
 <head>
     <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@ViewBag.Title</title>
     <link href="~/Content/Site.css" rel="stylesheet" type="text/css" />
     <link href="~/Content/bootstrap.min.css" rel="stylesheet" type="text/css" />
-    <script src="~/Scripts/modernizr-2.6.2.js"></script>
+    <link href="~/Content/ui-bootstrap-csp.css" rel="stylesheet" type="text/css" />
+   <link rel="shortcut icon" type="image/png" href="~/Content/jasmine/jasmine_favicon.png" />
+    <link href="~/Content/jasmine/jasmine.css" rel="stylesheet" />
+    <!-- Vendor scripts -->
+    <script type="text/javascript" src="~/Scripts/modernizr-2.8.3.js"></script>
+    <script type="text/javascript" src="~/Scripts/jquery-3.1.1.js"></script>
+    <script type="text/javascript" src="~/Scripts/bootstrap.min.js"></script>
+    <script type="text/javascript" src="~/Scripts/angular.js"></script>
+    <script type="text/javascript" src="~/Scripts/moment.min.js"></script>
+    <script type="text/javascript" src="~/Scripts/angular-ui/ui-bootstrap-tpls.min.js"></script>
+  
+    <!-- Jasmine testing framework-->
+    <script type="text/javascript" src="~/Scripts/jasmine/jasmine.js"></script>
+    <script type="text/javascript" src="~/Scripts/jasmine/jasmine-html.js"></script>
+    <script type="text/javascript" src="~/Scripts/jasmine/boot.js"></script>
 </head>
 <body>
     <div class="navbar navbar-inverse navbar-fixed-top">
@@ -34,8 +49,28 @@
         </footer>
     </div>
 
-    <script src="~/Scripts/jquery-3.1.1.min.js"></script>
-    <script src="~/Scripts/bootstrap.min.js"></script>
-    <script src="~/Scripts/angular.min.js"></script>
+
+    <!-- Bootstrapping -->
+    <script src="~/Scripts/app/app.js"></script>
+    <script src="~/Scripts/app/config.js"></script>
+
+    <!-- Common modules-->
+    <script src="~/Scripts/app/common/common.js"></script>
+    <script src="~/Scripts/app/common/logger.js"></script>
+    <script src="~/Scripts/app/common/spinner.js"></script>
+
+    <!-- Data services -->
+    <script src="~/Scripts/app/dataservices/httpDataService.js"></script>
+    <script src="~/Scripts/app/dataservices/meterFareDataService.js"></script>
+
+    <!-- Services -->
+    <script src="~/Scripts/app/services/datePickerService.js"></script>
+    <script src="~/Scripts/app/services/directives.js"></script>
+    <script src="~/Scripts/app/services/moment.js"></script>
+    <script src="~/Scripts/app/services/momentService.js"></script>
+    <script src="~/Scripts/app/services/timePickerService.js"></script>
+
+    <!-- Controllers -->
+    <script src="~/Scripts/app/meterFare/meterFareController.js"></script>
 </body>
 </html>

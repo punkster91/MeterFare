@@ -1,4 +1,5 @@
-﻿using MeterFare.Data.Models;
+﻿using MeterFare.Data.Interfaces;
+using MeterFare.Data.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,12 +16,17 @@ namespace MeterFare.Data.Services
         public const float DISTANCEINTERVAL = 0.20f;
         public const short MINUTESINTERVAL = 1;
 
-        private static List<Surcharge> Surcharges = new List<Surcharge>(new Surcharge[] {
-            new NewYorkStateTaxSurcharge(),
-            new NightSurcharge(),
-            new PeakHoursWeekdaySurcharge()
-        });
+        private List<Surcharge> Surcharges { get; set; }
 
+        public MeterFareService()
+        {
+
+        }
+
+        public MeterFareService(ISurchargesProvider surchargesProvider)
+        {
+            Surcharges = surchargesProvider.GetAllSurcharges();
+        }
         /// <summary>
         /// Calculates the total fare for the meter
         /// </summary>

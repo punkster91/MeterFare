@@ -1,0 +1,111 @@
+﻿
+@{
+    ViewBag.Title = "Meter Fare App";
+}
+
+<div data-ng-controller="meterFareController as vm">
+    <div class="row">
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+            <!-- page header-->
+            <div class="page-header">
+                <h1>{{ vm.title }}</h1>
+            </div>
+
+            <!-- Form -->
+            <form name="meterFareForm" ng-submit="vm.submitForm(meterFareForm.$valid)" novalidate>
+                <!-- Date of the ride-->
+                <div class="row">
+                    <div class="col-xs-7 col-sm-6 col-md-6 col-lg-6">
+                        <label class="control-label">Time of departure</label>
+                        <p class="input-group">
+                            @*<input type="text" name="meterDate" class="form-control"
+                                   ng-model="vm.meterDate"
+                                   uib-datepicker-popup="{{vm.meterDateFormat}}"
+                                   is-open="vm.popup1.opened"
+                                   datepicker-options="vm.dateOptions"
+                                   ng-required="true"
+                                   close-text="Close"
+                                   alt-input-formats="vm.altInputFormats" />
+                            <span class="input-group-btn">
+                                <button type="button" class="btn btn-default" ng-click="vm.open1()">
+                                    <i class="glyphicon glyphicon-calendar"></i>
+                                </button>
+                            </span>*@
+
+                            <input type="text" name="meterDate" class="form-control"
+                                   ng-model="vm.meterDateControl.data"
+                                   uib-datepicker-popup="{{vm.meterDateControl.defaultDateFormat}}"
+                                   is-open="vm.meterDateControl.isOpened"
+                                   datepicker-options="vm.meterDateControl.defaultDateOptions"
+                                   ng-required="true"
+                                   close-text="Close"
+                                   alt-input-formats="vm.meterDateControl.altInputFormats" />
+                            <span class="input-group-btn">
+                                <button type="button" class="btn btn-default" ng-click="vm.meterDateControl.openPopup()">
+                                    <i class="glyphicon glyphicon-calendar"></i>
+                                </button>
+                            </span>
+                        </p>
+                        <p ng-show="meterFareForm.meterDate.$invalid && !meterFareForm.meterDate.$pristine" class="help-block">
+                            A date is required.
+                        </p>
+                    </div>
+                    <div class="col-xs-5 col-sm-6 col-md-6 col-lg-6">
+                        @*<div uib-timepicker 
+                             ng-model="vm.meterTime"
+                             hour-step="vm.hstep"
+                             minute-step="vm.mstep" 
+                             show-meridian="vm.ismeridian"></div>*@
+
+                        <div uib-timepicker
+                             ng-model="vm.meterTimeControl.data"
+                             hour-step="vm.meterTimeControl.hstep"
+                             minute-step="vm.meterTimeControl.mstep"
+                             show-meridian="vm.meterTimeControl.ismeridian"></div>
+
+                        <p ng-show="meterFareForm.meterTime.$invalid && !meterFareForm.meterTime.$pristine" class="help-block">
+                            A time is required.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Miles traveled under 6 miles per hour -->
+                <div class="row">
+         
+                    <label class="col-xs-12 col-sm-6 col-md-6 col-lg-6 control-label">Miles traveled under 6 miles per hour<small>&nbsp;(.2, .4, .6 ... 1)</small></label>
+                    <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+                        <input type="text" name="milesTraveled" class="form-control" ng-model="vm.milesTraveled" required />
+                        <p ng-show="meterFareForm.milesTraveled.$invalid && !meterFareForm.milesTraveled.$pristine" class="help-block">
+                            Please enter the amount of miles traveled under 6 miles per hour. 1/5 of a mile increments only.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Minutes travled over 6 miles per hour -->
+                <div class="row">
+                    <label class="col-xs-12 col-sm-6 col-md-6 col-lg-6 control-label">Minutes traveled over 6 miles per hour<small>&nbsp;(1, 2, 3 ... 60)</small></label>
+                    <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+                        <input type="text" name="minutesTraveled" class="form-control" ng-model="vm.minutesTraveled" numbers-only />
+                        <p ng-show="meterFareForm.minutesTraveled.$invalid && !meterFareForm.minutesTraveled.$pristine" class="help-block">
+                            Please enter the amount of minutes traveled over 6 miles per hour. 60 seconds increments only.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Submit button -->
+                <div class="row">
+                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                        <button type="submit" class="btn btn-default btn-primary">Calculate</button>
+                    </div>
+                </div>
+            </form>
+
+            <!-- Total Fare -->
+            <div class="" ng-show="vm.totalFare != null">
+                <h2>
+                    <small>Your total fare =</small>&nbsp;{{ vm.totalFare | currency }}
+                </h2>
+            </div>
+        </div>
+    </div>
+</div>

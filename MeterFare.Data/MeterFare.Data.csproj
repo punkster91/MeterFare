@@ -45,6 +45,8 @@
     <Compile Include="Models\Surcharge.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\MeterFareService.cs" />
+    <Compile Include="Interfaces\ISurchargesProvider.cs" />
+    <Compile Include="Services\SurchargesProvider.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Enums\" />
