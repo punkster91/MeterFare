@@ -1,0 +1,21 @@
+﻿
+@{
+    ViewBag.Title = "Angular Tests";
+}
+
+<h2>Angular tests using Jasmine</h2>
+
+@section scripts{
+
+        <!-- Jasmine testing framework must be referenced before angular-mocks -->
+    <script type="text/javascript" src="~/Scripts/jasmine/jasmine.js"></script>
+    <script type="text/javascript" src="~/Scripts/jasmine/jasmine-html.js"></script>
+    <script type="text/javascript" src="~/Scripts/jasmine/boot.js"></script>
+
+    <!-- angular unit-testing libraries-->
+    <script type="text/javascript" src="~/Scripts/angular-mocks.js"></script>
+
+    <!-- javascript files to test -->
+    <script type="text/javascript" src="~/Scripts/tests/meterFareControllerSpec.js"></script>
+    <script type="text/javascript" src="~/Scripts/tests/directivesSuite.js"></script>
+}

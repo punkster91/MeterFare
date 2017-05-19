@@ -2,9 +2,9 @@
     'use strict';
     var controllerId = 'meterFareController';
     angular.module('app')
-        .controller(controllerId, ['common', 'momentService', 'meterFareDataService', 'datepickerService', 'timepickerService', meterFareController]);
+        .controller(controllerId, ['$scope', 'common', 'momentService', 'meterFareDataService', 'datepickerService', 'timepickerService', meterFareController]);
 
-    function meterFareController(common, momentService, meterFareDataService, datepickerService, timepickerService) {
+    function meterFareController($scope, common, momentService, meterFareDataService, datepickerService, timepickerService) {
 
         var getLogFn = common.logger.getLogFn;
         var log = getLogFn(controllerId);
@@ -15,6 +15,7 @@
         vm.meterTimeControl = timepickerService.initNewDatePicker(null);
         vm.milesTraveled = null;
         vm.minutesTraveled = null;
+        $scope.totalFare = null;
 
         vm.submitForm = submitForm;
         vm.prefill = prefill;
@@ -34,28 +35,7 @@
                 });
         }
 
-        vm.meterDateFormat = momentService.defaultDateFormat;
-        vm.altInputFormats = momentService.altDateFormats;
-        vm.dateOptions = {
-            formatYear: 'yy',
-            maxDate: new Date(2020, 5, 22),
-            minDate: new Date(),
-            startingDay: 1,
-            showWeeks: false,
-            initDate : new Date()
-        };
-        vm.popup1 = {
-            opened: false
-        };
-        vm.open1 = function() {
-            vm.popup1.opened = true;
-        };
-
-        vm.ismeridian = true;
-        vm.hstep = 1;
-        vm.mstep = 15;
-
-
+        // calls the web api function to calculate total fare
         function calculateFareRequest(sMeterTime, iMilesTraveled, iMinutesTraveled) {
             // create api parameters from form arguments
             var httpParams = {
@@ -69,9 +49,9 @@
             return meterFareDataService.calculateFare(httpParams)
                             .then(function (response) {
                                 if (response.status == 200) {
-                                    vm.totalFare = response.data;
+                                    $scope.totalFare = response.data;
                                 } else {
-                                    vm.totalFare = null;
+                                    $scope.totalFare = null;
                                 }
                             });
         }
@@ -92,12 +72,14 @@
             }
         }
 
+        // NOT IN USE
         function resetForm() {
-            vm.meterFareForm.$submitted = false;
+            $scope.totalFare = null;
         }
 
+        // populates the form with random data
         function prefill() {
-            var d = new Date();
+            var d = common.getRandomDate(new Date(2012, 0, 1), new Date());
             vm.meterDateControl.setData(d);
             vm.meterTimeControl.setData(d);
             vm.minutesTraveled = Math.floor(Math.random() * 100);

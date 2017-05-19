@@ -13,5 +13,10 @@ namespace MeterFare.UI.Controllers
         {
             return View();
         }
+
+        public ActionResult TestPage()
+        {
+            return View();
+        }
     }
 }

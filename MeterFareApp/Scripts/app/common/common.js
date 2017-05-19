@@ -56,7 +56,8 @@
             debouncedThrottle: debouncedThrottle,
             textContains: textContains,
             datepickerShortDate: datepickerShortDate,
-            cleanUpSpecialChars: cleanUpSpecialChars
+            cleanUpSpecialChars: cleanUpSpecialChars,
+            getRandomDate: getRandomDate
         };
 
         return service;
@@ -107,5 +108,8 @@
             return str.replace(/[^a-z0-9_]/gi, ''); // final clean up
         };
 
+        function getRandomDate(start, end) {
+            return new Date(start.getTime() + Math.random() * (end.getTime() - start.getTime()));
+        };
     }
 })();
