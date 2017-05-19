@@ -17,6 +17,7 @@
         vm.minutesTraveled = null;
         $scope.totalFare = null;
 
+        // expose public functions for the views
         vm.submitForm = submitForm;
         vm.prefill = prefill;
         vm.resetForm = resetForm;
@@ -28,10 +29,8 @@
             var promises = [];
             common.activateController(promises, controllerId)
                 .then(function () {
-                    console.log(vm.meterDateControl.name);
-
-                    vm.meterDateControl.setData(new Date());
-                    vm.meterTimeControl.setData(new Date());
+                    // enable to initially start with random data
+                    prefill();
                 });
         }
 
@@ -53,6 +52,8 @@
                                 } else {
                                     $scope.totalFare = null;
                                 }
+                            }).catch(function () {
+                                $scope.totalFare = null;
                             });
         }
 
@@ -72,9 +73,16 @@
             }
         }
 
-        // NOT IN USE
+        // resets the form back to empty fields
         function resetForm() {
+
             $scope.totalFare = null;
+            vm.meterDateControl.setData(null);
+            vm.meterTimeControl.setData(null);
+            vm.minutesTraveled = null;
+            vm.milesTraveled = null;
+
+            $scope.meterFareForm.$setPristine();
         }
 
         // populates the form with random data

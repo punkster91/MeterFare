@@ -39,27 +39,10 @@ describe('Angular directives', function () {
             form = rootScope.form;
         });
 
-        it (' should be a whole number', function () {
+        it ('should be a whole number', function () {
             form.minutesTraveled.$setViewValue('24');
             rootScope.$digest();
             expect(rootScope.model.minutesTraveled).toEqual('24');
-        });
-
-        it(' should remove non digit characters', function () {
-            form.minutesTraveled.$setViewValue('22a');
-            rootScope.$digest();
-            expect(rootScope.model.minutesTraveled).toEqual('22');
-        });
-        
+        });       
     });
-
-
-
-
-
-    // valid calculatefarerequest should return a number
-    // invalid calculatefarerequest should do something else
-    // valid submit command should trigger promise
-    // invalid submit command should not trigger promise
-    // prefill command should have all properties set
 });

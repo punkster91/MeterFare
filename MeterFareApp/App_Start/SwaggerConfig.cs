@@ -7,8 +7,14 @@ using Swashbuckle.Application;
 
 namespace MeterFare.UI
 {
+    /// <summary>
+    /// Swagger configuration
+    /// </summary>
     public class SwaggerConfig
     {
+        /// <summary>
+        /// Initialize swagger
+        /// </summary>
         public static void Register()
         {
             var thisAssembly = typeof(SwaggerConfig).Assembly;

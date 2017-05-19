@@ -15,14 +15,23 @@ namespace MeterFare.Data.Services
 
         public const float DISTANCEINTERVAL = 0.20f;
         public const short MINUTESINTERVAL = 1;
-
+        /// <summary>
+        /// A collection of surcharges
+        /// </summary>
         private List<Surcharge> Surcharges { get; set; }
 
+        /// <summary>
+        /// Default constructor
+        /// </summary>
         public MeterFareService()
         {
 
         }
 
+        /// <summary>
+        /// Initalize the service with surcharges provider
+        /// </summary>
+        /// <param name="surchargesProvider">Surcharges provider</param>
         public MeterFareService(ISurchargesProvider surchargesProvider)
         {
             Surcharges = surchargesProvider.GetAllSurcharges();

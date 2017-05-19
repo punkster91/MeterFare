@@ -9,9 +9,7 @@ namespace MeterFare.UI.Controllers
     /// </summary>
     public class MeterFareController : ApiController
     {
-      
-        [HttpPost]
-        // POST: MeterFare/CalculateFare
+        /// POST: MeterFare/CalculateFare
         /// <summary>
         /// Calculates the meter fare based on the meter time and distance traveled
         /// </summary>
@@ -19,6 +17,7 @@ namespace MeterFare.UI.Controllers
         /// <param name="milesTraveled"></param>
         /// <param name="minutesTraveled"></param>
         /// <returns></returns>
+        [HttpPost]
         public IHttpActionResult CalculateFare(string meterTime, float milesTraveled, uint minutesTraveled)
         {
             MeterFareService meterFareService = new MeterFareService(new SurchargesProvider());
@@ -38,6 +37,10 @@ namespace MeterFare.UI.Controllers
             return Ok(totalFare);
         }
 
+        /// <summary>
+        /// Returns an OK http status with the string "HELLO WORLD"
+        /// </summary>
+        /// <returns></returns>
         [HttpGet]
         [Route("api/meterfare/helloworld")]
         public IHttpActionResult HelloWorld()

@@ -7,8 +7,15 @@ using System.Web.Routing;
 
 namespace MeterFare.UI
 {
+    /// <summary>
+    /// The route config
+    /// </summary>
     public class RouteConfig
     {
+        /// <summary>
+        /// Register the routes
+        /// </summary>
+        /// <param name="routes"></param>
         public static void RegisterRoutes(RouteCollection routes)
         {
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");

@@ -16,7 +16,7 @@
                 <!-- Date of the ride-->
                 <div class="row">
                     <div class="col-xs-7 col-sm-6 col-md-6 col-lg-6">
-                        <label class="control-label">Time of departure</label>
+                        <label class="control-label">Date and time of pickup</label>
                         <p class="input-group">
                             <input type="text" 
                                    name="meterDate" 
@@ -58,7 +58,7 @@
                 <div class="row">
          
                     <label class="col-xs-12 col-sm-6 col-md-6 col-lg-6 control-label">Miles traveled under 6 miles per hour<small>&nbsp;(.2, .4, .6 ... 1)</small></label>
-                    <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+                    <div class="col-xs-12 col-sm-2 col-md-2 col-lg-2">
                         <input type="text" 
                                name="milesTraveled" 
                                class="form-control" 
@@ -73,24 +73,24 @@
                 <!-- Minutes travled over 6 miles per hour -->
                 <div class="row">
                     <label class="col-xs-12 col-sm-6 col-md-6 col-lg-6 control-label">Minutes traveled over 6 miles per hour<small>&nbsp;(1, 2, 3 ... 60)</small></label>
-                    <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+                    <div class="col-xs-12 col-sm-2 col-md-2 col-lg-2">
                         <input type="number" name="minutesTraveled" class="form-control" ng-model="vm.minutesTraveled" overwrite-integer />
                         <p ng-show="meterFareForm.minutesTraveled.$invalid && (!meterFareForm.minutesTraveled.$pristine || meterFareForm.$submitted)" class="help-block">
                             Please enter the amount in multiple of 1 minutes.
                         </p>
                     </div>
                 </div>
-
+                <hr />
                 <!-- Submit button -->
                 <div class="row">
-                    <div class="col-xs-6 col-sm-3 col-md-3 col-lg-3">
-                        <button type="submit" class="btn btn-default btn-primary">Calculate</button>
+                    <div class="col-xs-6 col-sm-2 col-md-2 col-lg-2">
+                        <button type="submit" class="btn btn-default btn-primary" title="Get the total fare for this form">Calculate</button>
                     </div>
-                    <div class="col-xs-6 col-sm-3 col-md-3 col-lg-3">
-                        <button type="reset" class="btn btn-default btn-danger">Reset</button>
+                    <div class="col-xs-6 col-sm-2 col-md-2 col-lg-2">
+                        <button type="reset" class="btn btn-default btn-danger" title="Reset this form" ng-click="vm.resetForm()">Reset</button>
                     </div>
-                    <div class="col-xs-6 col-sm-3 col-md-3 col-lg-3">
-                        <button type="button" class="btn btn-default btn-info" ng-click="vm.prefill()">Random</button>
+                    <div class="col-xs-6 col-sm-2 col-md-2 col-lg-2">
+                        <button type="button" class="btn btn-default btn-info" title="Fill out this form with random data" ng-click="vm.prefill()">Random</button>
                     </div>
                 </div>
             </form>
