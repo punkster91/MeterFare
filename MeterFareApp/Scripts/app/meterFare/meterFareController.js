@@ -30,7 +30,7 @@
             common.activateController(promises, controllerId)
                 .then(function () {
                     // enable to initially start with random data
-                    prefill();
+                    //prefill();
                 });
         }
 

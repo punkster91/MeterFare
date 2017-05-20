@@ -20,32 +20,28 @@ namespace MeterFare.UI.Controllers
         [HttpPost]
         public IHttpActionResult CalculateFare(string meterTime, float milesTraveled, uint minutesTraveled)
         {
-            MeterFareService meterFareService = new MeterFareService(new SurchargesProvider());
-
-            DateTime meterDate;
-            if(!DateTime.TryParse(meterTime, out meterDate))
+            try
             {
-                throw new Exception(string.Format("Unable to format meter time: {0}", meterTime));
+                MeterFareService meterFareService = new MeterFareService(new SurchargesProvider());
+
+                DateTime meterDate;
+                if (!DateTime.TryParse(meterTime, out meterDate))
+                {
+                    throw new Exception(string.Format("Unable to format meter time: {0}", meterTime));
+                }
+
+                decimal totalFare = meterFareService.CalculateTotalFare(meterDate,
+                    MeterFareService.BASEFARE,
+                    MeterFareService.UNITFARE,
+                    milesTraveled,
+                    minutesTraveled);
+
+                return Ok(totalFare);
             }
-
-            decimal totalFare = meterFareService.CalculateTotalFare(meterDate,
-                MeterFareService.BASEFARE,
-                MeterFareService.UNITFARE,
-                milesTraveled,
-                minutesTraveled);
-
-            return Ok(totalFare);
-        }
-
-        /// <summary>
-        /// Returns an OK http status with the string "HELLO WORLD"
-        /// </summary>
-        /// <returns></returns>
-        [HttpGet]
-        [Route("api/meterfare/helloworld")]
-        public IHttpActionResult HelloWorld()
-        {
-            return Ok("HELLO WORLD");
+            catch (Exception ex)
+            {
+                return BadRequest(ex.ToString());
+            }
         }
     }
 }
